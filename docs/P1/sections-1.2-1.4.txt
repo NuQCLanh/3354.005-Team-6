@@ -1,0 +1,42 @@
+1.2   Scope
+
+In scope — we will build this
+  Importing daily menus (dining hall, date, meal, station, dish) from UTD’s Dine on Campus pages.
+  Showing the most recently imported menu, with the time it was imported, when Dine on Campus cannot be reached.
+  Anyone can browse menus by dining hall, date, and meal without an account.
+  Students register and sign in with a UTD email, verified through a third-party sign-in service.
+  Signed-in students rate a dish from 1 to 5 stars and write a short review (up to 280 characters), at most one review per dish per day.
+  Every dish shows its average rating, number of reviews, and most recent reviews
+  Filtering dishes by dietary tags, where Dine on Campus provides them, with a disclaimer on every page that the tags are not an allergen guarantee.
+  Students can report a review; a review reported by 3 different students is hidden automatically.
+
+Out of scope — we will not, and why
+  Enter or edit menus by hand. Menus come only from Dine on Campus.
+  Online ordering and payment. UTD already offers ordering through the Boost app, and payments depend on meal-plan systems, the university controls.
+  Allergen guarantees. UTD does not publish the top 9 allergen information online; it is only available from dining staff in person.
+  UTD single sign-on (SSO). UTD IT does not approve SSO access for student projects.
+  Photo uploads in reviews. Storing and checking images needs moderation; the team cannot staff.
+  Replies or comment threads and messaging between students. They turn reviews into a discussion forum that would need moderation.
+  Off-campus restaurants and food trucks. They are not on UTD’s menu pages.
+
+Why the exclusions were excluded:
+Each exclusion either duplicates something UTD already provides (Boost ordering, Dine on Campus menus), needs data or approvals we cannot get (allergens, SSO), or needs moderation we cannot staff (photos, threads). Off-campus vendors were left out because they are not on UTD’s menu pages.
+
+1.3   Definitions, acronyms, and abbreviations
+
+Term or abbreviation	Meaning as used in this project
+
+Meal period:	Breakfast, lunch, or dinner at one location on one date. One menu exists per location, date, and meal period.
+Station:	A serving counter within a location (e.g., grill, salad bar). Every dish belongs to exactly one station.
+Dietary tag:	A label such as Vegan or Halal, taken from Dine on Campus. The system never adds or edits tags.
+Dine on Campus:	The third-party website where UTD publishes dining menus; the system imports menus from it.
+FR/ QR/ CON/ UC:	Functional requirements/ quality requirements/ constraint requirements/ use cases.
+Dietary label (two meanings):	a)	Diet tags, such as Vegan 
+                              b)	Allergen warnings
+
+1.4   References
+
+[R1] UTD Dining menus on Dine on Campus
+https://dineoncampus.com/utdallasdining/whats-on-the-menu/dining-hall-west
+[R2] FARE College Food Allergy Program, UT Dallas profile
+https://college.foodallergy.org/schools/texas/university-texas-dallas
