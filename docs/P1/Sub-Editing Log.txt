@@ -7,7 +7,7 @@ Sections: 1.2 2.1 2.3 2.4 3.4
 2.1 add explaining the boundary choice
 2.3 remove Dining Staff
 2.4 remove constraints "Users must log in through UT Dallas SSO"
-3.4 remove Dining Staff
+3.4 remove Dining Staff edit use-case field 2
 
 Kaetlyn Gonzalez
 Sections: 1.1, 1.3, 1.4, 2.2, 2.5, 2.6, 3.1, 3.2, 3.3, 3.5, 4.1, 4.2, 4.3, 4.4, 4.5, 5
