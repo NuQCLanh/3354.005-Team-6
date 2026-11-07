@@ -1,0 +1,66 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.1.2 Chrome/138.0.7204.243 Electron/37.4.0 Safari/537.36" version="28.1.2">
+  <diagram name="Page-1" id="rmBqYwaaNz_FVldv43Gz">
+    <mxGraphModel dx="857" dy="589" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="mBw3ZctRkBQyupwqlJPL-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.996;exitY=0.354;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;exitPerimeter=0;" edge="1" parent="1" source="mBw3ZctRkBQyupwqlJPL-1" target="mBw3ZctRkBQyupwqlJPL-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mBw3ZctRkBQyupwqlJPL-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="mBw3ZctRkBQyupwqlJPL-1" target="mBw3ZctRkBQyupwqlJPL-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mBw3ZctRkBQyupwqlJPL-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.375;exitY=1.001;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;exitPerimeter=0;" edge="1" parent="1" source="mBw3ZctRkBQyupwqlJPL-1" target="mBw3ZctRkBQyupwqlJPL-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mBw3ZctRkBQyupwqlJPL-1" value="CometEats Menu" style="rounded=1;whiteSpace=wrap;html=1;fontSize=15;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="340" y="260" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="mBw3ZctRkBQyupwqlJPL-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="mBw3ZctRkBQyupwqlJPL-2" target="mBw3ZctRkBQyupwqlJPL-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mBw3ZctRkBQyupwqlJPL-2" value="Dine on Campus&lt;br&gt;(External System)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="73" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mBw3ZctRkBQyupwqlJPL-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1.012;entryY=0.645;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="mBw3ZctRkBQyupwqlJPL-5" target="mBw3ZctRkBQyupwqlJPL-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mBw3ZctRkBQyupwqlJPL-5" value="Third-Party Email Verification Service" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="653" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mBw3ZctRkBQyupwqlJPL-9" value="Authentication request" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="510" y="270" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="mBw3ZctRkBQyupwqlJPL-10" value="User identity / Login Result" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="510" y="320" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="mBw3ZctRkBQyupwqlJPL-11" value="Student" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="73" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mBw3ZctRkBQyupwqlJPL-12" value="Email Service" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="653" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mBw3ZctRkBQyupwqlJPL-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0.187;entryY=0.996;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="mBw3ZctRkBQyupwqlJPL-11" target="mBw3ZctRkBQyupwqlJPL-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="380" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="370" y="375" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mBw3ZctRkBQyupwqlJPL-16" value="Email notification" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="510" y="367" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="mBw3ZctRkBQyupwqlJPL-17" value="Menu items, dietary tags, meal periods, station updates" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="200" y="210" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="mBw3ZctRkBQyupwqlJPL-18" value="Browse menus, filter, rate items, favourite items" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="198" y="347" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="mBw3ZctRkBQyupwqlJPL-20" value="Menus, filter results, item ratings, alerts" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="199" y="408" width="140" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
