@@ -1,0 +1,185 @@
+==============================================================================
+7 DESIGN RATIONALE
+==============================================================================
+
+Owner: Avneet Kaur
+
+7.1 Architecture decision records
+------------------------------------------------------------------------------
+
+ADR-01 Layered client-server web application
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Status:               Accepted
+
+Date and owner:       7 Nov 2026, Avneet Kaur
+
+Context (drivers):    QAS-01 (menu page responds within 2 s), QAS-02 (99%
+                      availability during dining hours), CON-01 (no UTD SSO),
+                      and the zero-cost constraint in 2.4. Every use case runs
+                      in a phone or desktop browser (2.3), and menus must be
+                      imported on a schedule without a student present
+                      (FR-02).
+
+Options considered:   1. Layered (N-tier) client-server: browser client, one
+                      application server with a scheduled import job, one
+                      database.
+                      2. Microservices: separate import, menu, review and
+                      account services, each deployed on its own.
+                      3. Client plus backend-as-a-service only: the browser
+                      talks straight to a hosted database with no server of
+                      our own.
+
+Decision:             Option 1, layered client-server. Presentation (browser),
+                      application logic (server) and data (database) are
+                      separate layers, and only the server talks to Dine On
+                      Campus and the database.
+
+Consequences:         Favors simplicity and modifiability: one deployable
+                      server that six students can build, test and reason
+                      about in one semester. Costs: the single server is a
+                      single point of failure for QAS-02, and the import job
+                      shares the server with student requests, so a slow
+                      import can slow page loads. We accept both because the
+                      expected load is small (one campus) and FR-03 keeps the
+                      last menu on screen if something fails.
+
+Evidence:             None yet beyond team experience; QAS-01 will be checked
+                      against the deployed server in P3.
+
+Related:              QAS-01, QAS-02, ADR-02, ADR-04
+
+ADR-02 Import menus on a schedule and serve them from our own database
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Status:               Accepted
+
+Date and owner:       7 Nov 2026, Avneet Kaur
+
+Context (drivers):    FR-02 (import at least every 6 hours), FR-03 (show the
+                      last imported menu when the source is down), QAS-01,
+                      QAS-02, and P1 risk R3 (Dine On Campus is an unofficial
+                      source that may change or block us). Out of scope 1.2:
+                      no menus entered by hand.
+
+Options considered:   1. Scheduled import: a job copies each day's menus from
+                      Dine On Campus into our database every 6 hours; students
+                      only ever read our copy.
+                      2. Live fetch: every time a student opens a menu, the
+                      server fetches that page from Dine On Campus.
+                      3. Hand-made sample data only, with no connection to
+                      Dine On Campus.
+
+Decision:             Option 1, scheduled import into our own database.
+
+Consequences:         Favors performance and availability: student requests
+                      never wait on Dine On Campus, and menus stay visible
+                      when it is down (FR-03). Costs: menus can be up to 6
+                      hours out of date (A2), and the import parser breaks if
+                      Dine On Campus changes its page structure, so a team
+                      member must check the import and fix the parser. Option
+                      2 was rejected because every page load would depend on
+                      an outside site we do not control; option 3 because it
+                      fails FR-01 and FR-02.
+
+Evidence:             Spike S-01 (section 8): 14/14 requests succeeded (100%),
+                      median 206 ms; a full day's import took at most 1.9 s.
+                      Confirms the scheduled import.
+
+Related:              QAS-01, QAS-02, QAS-04, R3, Q1, S-01
+
+ADR-03 Use a third-party sign-in service limited to UTD email addresses
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Status:               Accepted
+
+Date and owner:       7 Nov 2026, Avneet Kaur
+
+Context (drivers):    FR-09 (register only with a verified @utdallas.edu
+                      address), CON-01 (UTD SSO cannot be used by student
+                      projects), QAS-03 (only verified students can write
+                      reviews or reports), and the zero-cost constraint in
+                      2.4.
+
+Options considered:   1. Third-party sign-in service: it stores passwords,
+                      sends verification emails and handles password resets;
+                      our server only accepts its signed tokens and checks the
+                      email domain.
+                      2. Our own accounts: our server stores hashed passwords
+                      and sends its own verification emails.
+                      3. UTD SSO.
+
+Decision:             Option 1, a third-party sign-in service, with our server
+                      rejecting any account whose email does not end in
+                      @utdallas.edu.
+
+Consequences:         Favors security: the team never stores passwords, and
+                      verification and resets are handled by a service built
+                      for it. Costs: a dependency on an outside provider and
+                      its free-tier limits on verification emails, and some
+                      lock-in if we later change provider. Option 2 was
+                      rejected because storing passwords safely is work and
+                      risk the team does not need; option 3 is ruled out by
+                      CON-01.
+
+Evidence:             CON-01 (P1). Free-tier email limits not yet confirmed;
+                      see Q4 in section 11.
+
+Related:              QAS-03, CON-01, FR-09
+
+ADR-04 Enforce review and report rules on the server, not in the browser
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Status:               Accepted
+
+Date and owner:       7 Nov 2026, Avneet Kaur
+
+Context (drivers):    FR-10 (one review per student per dish per day, at most
+                      280 characters), FR-11 (one report per student per
+                      review), FR-12 (hide a review after 3 reports from
+                      different students), QAS-03. There is no admin to fix
+                      abuse by hand (1.2).
+
+Options considered:   1. Server-side: the application server checks every rule
+                      before saving a review or a report.
+                      2. Browser-side: the page checks the rules before
+                      sending, and the server saves whatever arrives.
+
+Decision:             Option 1, every rule is checked on the server; the
+                      browser repeats the checks only to give the student
+                      quick feedback.
+
+Consequences:         Favors security and data integrity: a student who
+                      bypasses the page still cannot post two reviews or
+                      report the same review twice, which matters because
+                      there is no admin. Costs: each review and report needs a
+                      round trip to the server, and the rules are coded twice
+                      (server and browser) and must be kept in step.
+
+Evidence:             None yet; FR-10 to FR-12 acceptance criteria will test
+                      this in P3.
+
+Related:              QAS-03, ADR-01, ADR-03
+
+7.2 Trade-off summary
+------------------------------------------------------------------------------
+
+* Simplicity, modifiability  (ADR-01)
+    Move:   One layered client-server application instead of separate services
+    Cost:   Single server is a single point of failure; import job shares the
+            server with student requests
+
+* Performance, availability  (ADR-02)
+    Move:   Import menus every 6 hours into our own database and serve
+            students from it
+    Cost:   Menus up to 6 hours stale; parser must be maintained when Dine On
+            Campus changes
+
+* Security  (ADR-03)
+    Move:   Third-party sign-in limited to @utdallas.edu, so the team stores
+            no passwords
+    Cost:   Dependency on an outside provider and its free-tier email limits
+
+* Security, data integrity  (ADR-04)
+    Move:   All review and report rules checked on the server
+    Cost:   Extra round trips; rules kept in step on server and browser
